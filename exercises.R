@@ -11,14 +11,10 @@ df1[df1$Score > 80, ]
 
 
 #Write a function that takes a numeric vector and returns the mean, median, and standard deviation as a list.
-function1 <- function(input) {
-  mean_output <- mean(input)
-  median_output <- median(input)
-  sd_output <- sd(input)
-  
-  result_list <- list("mean_output" = mean_output, "median_output" = median_output, "sd_output" = sd_output)
-  return (result_list)
+function1 <- function(x) {
+  list(mean = mean(x), median = median(x), sd = sd(x))
 }
+
 
 #Simulate 100 coin tosses (sample(c("H", "T"), 100, replace=TRUE)). Estimate the proportion of heads.
 tosses <- sample(c("H", "T"), 100, replace=TRUE)
@@ -27,6 +23,19 @@ paste(round((sum(tosses == "H") / length(tosses) * 100), 2), "% heads", sep = ""
 paste(round((mean(tosses == "T") * 100), 2), "% tails", sep = "")
 
 #Save your data frame to a .csv file, then read it back into R.
+filename <- "df1.csv"
+filepath <- getwd()
+fullpath <- file.path(filepath, filename)
+
+# Save it
+write.csv(df1, fullpath, row.names = FALSE)
+
+# Read it back
+df1_new <- read.csv(fullpath)
+
+
+
+
 
 
 
